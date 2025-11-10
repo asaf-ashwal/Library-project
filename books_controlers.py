@@ -24,10 +24,11 @@ class Books_controlers:
         return books
 
     def creat(book):
-        result = Books_controlers.read_one(book['ISBN'])
-        if result != None:
+        result = Books_controlers.read_one(book.ISBN)
+        if result == None:
             books = Books_controlers.get_db()
-            books.append(book)
+            books.append(book.report())
+            print(books)
             Books_controlers.push_db(books)
         else: print('we all reddy hav this book')
         

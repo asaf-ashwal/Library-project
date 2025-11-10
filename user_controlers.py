@@ -14,23 +14,25 @@ class Users_controlers:
         with open("users_DB.json", "w") as file:
             json.dump(new_data, file)
 
-    def read_one(book_id):
-        books = Users_controlers.get_db()
-        for b in books:
-            if b["id"] == book_id:
-                return b
+    def read_one(user_id):
+        users = Users_controlers.get_db()
+
+        for u in users:
+            print('u: ',u)
+            if u["id"] == user_id:
+                return u
         return None
 
     def read_all():
-        books = Users_controlers.get_db()
-        return books
+        users = Users_controlers.get_db()
+        return users
 
-    def creat(book):
-        resolt = Users_controlers.read_one(book['id'])
+    def creat(user):
+        resolt = Users_controlers.read_one(user.id)
         if resolt == None:
-            books = Users_controlers.get_db()
-            books.append(book)
-            Users_controlers.push_db(books)
+            users = Users_controlers.get_db()
+            users.append(user.report())
+            Users_controlers.push_db(users)
         else: print('we all reddy hav this user')
 
     def add_book_to_list(
@@ -39,10 +41,13 @@ class Users_controlers:
     ):
         result = Books_controlers.read_one(book_id)
         if result != None:
+            
             users = Users_controlers.get_db()
             for i in users:
+                print(i['id'] ==user_id)
                 if i['id'] == user_id: 
                     i['borrowed_books'].append(book_id)
+                    print('start')
                     Users_controlers.push_db(users)
                     break
         else: print('i dident find this book')
