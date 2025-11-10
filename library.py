@@ -1,3 +1,5 @@
+# import user class
+# import book class
 class Library:
     def __init__(self):
         self.list_of_users: list = []
@@ -5,7 +7,8 @@ class Library:
 
     def add_book(self, book):
         # if(type(book) == Book)
-        self.list_of_books.append(book.ISBN)
+            self.list_of_books.append(book.ISBN)
+        # להוסיף לדאטה בייס את הספר
         # else: return 'ספר לא חוקי'
 
     def add_user(self, user):
@@ -14,6 +17,6 @@ class Library:
         # else: return 'משתמש לא חוקי'
 
     def borrowed_books(self, user_id, book_isbn):
-        book = 'b'
-        user = 'u'
+        books = []
+        
         
