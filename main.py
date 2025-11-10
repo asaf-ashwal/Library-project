@@ -1,2 +1,2 @@
-from handle_json import read_all
-print(read_all())
+if __name__ == '__main__':
+    print('hello world')
