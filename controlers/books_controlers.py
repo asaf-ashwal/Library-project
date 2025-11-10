@@ -4,12 +4,12 @@ import json
 class Books_controlers:
     @staticmethod
     def get_db():
-        with open("books_DB.json", "r") as file:
+        with open("DB/books_DB.json", "r") as file:
             return json.load(file)
 
     @staticmethod
     def push_db(new_data):
-        with open("books_DB.json", "w") as file:
+        with open("DB/books_DB.json", "w") as file:
             json.dump(new_data, file)
 
     def read_one(book_id):
@@ -30,8 +30,8 @@ class Books_controlers:
             books.append(book.report())
             print(books)
             Books_controlers.push_db(books)
-        else: print('we all reddy hav this book')
-        
+        else:
+            print("we all reddy hav this book")
 
     def uppdate_avaliable(
         book_id,

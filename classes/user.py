@@ -11,7 +11,4 @@ class User:
         return self.__dict__
 
 
-# u1 = User("avi")
-# u1.borrowed_books.append("run")
-# u1.borrowed_books.append("re")
-# print(u1.report())
+
