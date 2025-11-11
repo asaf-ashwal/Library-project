@@ -1,3 +1,4 @@
+from classes.book import Book
 import json
 
 
@@ -8,11 +9,13 @@ class Books_controlers:
             return json.load(file)
 
     @staticmethod
-    def push_db(new_data):
+    def push_db(new_data: str):
         with open("DB/books_DB.json", "w") as file:
             json.dump(new_data, file)
 
-    def read_one(book_id):
+    
+
+    def read_one(book_id: str):
         books = Books_controlers.get_db()
         for b in books:
             if b["ISBN"] == book_id:
@@ -20,36 +23,39 @@ class Books_controlers:
         return None
 
     def read_all():
-        books = Books_controlers.get_db()
+        books: list [dict] = Books_controlers.get_db()
         return books
 
-    def creat(book):
-        result = Books_controlers.read_one(book.ISBN)
+    def creat(book: Book):
+        result: dict | None = Books_controlers.read_one(book.ISBN)
         if result == None:
-            books = Books_controlers.get_db()
+            books: list [dict] = Books_controlers.read_all()
             books.append(book.report())
-            print(books)
             Books_controlers.push_db(books)
         else:
             print("we all reddy hav this book")
 
     def uppdate_avaliable(
-        book_id,
+        book_id
     ):
-        books = Books_controlers.get_db()
+        books: list [dict] = Books_controlers.read_all()
         for b in books:
             if b["ISBN"] == book_id:
                 b["is_avaliable"] = not b["is_avaliable"]
-                break
+                Books_controlers.push_db(books)
+                return True
+        print("we don't have this book")    
 
-        Books_controlers.push_db(books)
+        
 
     def delete(
-        book_id,
+        book_id: str
     ):
-        books = Books_controlers.get_db()
+        books: list [dict] = Books_controlers.read_all()
         for b in range(len(books)):
             if books[b]["ISBN"] == book_id:
                 del books[b]
-                break
-        Books_controlers.push_db(books)
+                Books_controlers.push_db(books)
+                return True
+        print("we don't have this book")    
+

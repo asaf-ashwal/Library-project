@@ -27,7 +27,6 @@ class Library:
     def borrowed_books(self, user_id: str, book_isbn: str):
         book = Books_controlers.read_one(book_isbn)
         if book != None:
-            print("is: ", book)
             if book["is_avaliable"]:
                 Users_controlers.add_book_to_list(book_isbn, user_id)
                 Books_controlers.uppdate_avaliable(book_isbn)
