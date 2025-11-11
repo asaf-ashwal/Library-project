@@ -10,7 +10,7 @@ class Users_controlers:
 
     @staticmethod
     def push_db(new_data):
-        with open("DB.users_DB.json", "w") as file:
+        with open("DB/users_DB.json", "w") as file:
             json.dump(new_data, file)
 
     def read_one(user_id):
